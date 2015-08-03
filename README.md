@@ -25,4 +25,4 @@ I generated a large [list of sample email address](https://raw.githubusercontent
 
 ## Results
 
-Using my sample data set, a single run takes 80-90ms seconds on a MacBook Pro running Chrome.
+Using my sample data set, a single run takes 85-100ms on a MacBook Pro running Chrome.
