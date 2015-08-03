@@ -1,0 +1,80 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="uniquifyEmails.js"></script>
+
+  <script type="text/javascript">
+    function getEmailsFromInput(inputId) {
+      inputLines = document.getElementById(inputId).value.split("\n");
+
+      inputEmails = [];
+      for(i=0; i<inputLines.length; i++) {
+        if(inputLines[i].trim().length > 0) { inputEmails.push(inputLines[i].trim()); }
+      }
+
+      return inputEmails;
+    }
+
+    function uniquifyClick() {
+      // Collect emails from input
+      inputEmails = getEmailsFromInput("inputEmails");
+
+      // Begin benchmark
+      startTime = new Date().getTime();
+
+      // Uniquify
+      resultEmails = uniquifyEmails(inputEmails);
+
+      // End benchmark
+      endTime = new Date().getTime();
+
+      // Display output
+      document.getElementById("outputEmails").value = resultEmails.join("\n");
+      document.getElementById("inputCountLabel").innerHTML = inputEmails.length
+      document.getElementById("resultCountLabel").innerHTML = resultEmails.length
+      document.getElementById("runtimeLabel").innerHTML = (endTime - startTime);
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Email uniquifier</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5"><label for="inputEmails">Input email list (one per line)</label></div>
+      <div class="col-md-2"></div>
+      <div class="col-md-5"><label for="outputEmails">Unique email list</label></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5">
+        <textarea id="inputEmails" class="form-control" rows="11"></textarea>
+      </div>
+
+      <div class="col-md-2">
+        <div class="text-center">
+          <button class="btn btn-primary btn-lg" onClick="uniquifyClick()">Uniquify</button>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <textarea id="outputEmails" class="form-control" rows="11"></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h5>Stats</h5>
+        <div>Processed <span id="inputCountLabel">N/A</span> total emails</div>
+        <div>Found <span id="resultCountLabel">N/A</span> unique emails</div>
+        <div>Finished in <span id="runtimeLabel">N/A</span> milliseconds</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
