@@ -19,6 +19,8 @@ This sounds pretty similar to a hash table, except for the insertion order part.
 
 In Javascript, objects behave like hash tables, providing constant time lookup and insertion for keys. Modern browsers even maintain insertion order of keys, but this functionality is not universal or gauranteed. As a result, I ended up storing emails in an array as well as the object to ensure that we can retrieve them in the original order.
 
+Although the problem parameters don't specify, I decided that we should only keep one instance of email address regardless of character case. Email addresses are case insensitive, after all.
+
 ## Test data
 
 I generated a large [list of sample email address](https://raw.githubusercontent.com/kylerippey/email_uniquifier/master/sample_emails.txt) to help me test my solution. The list is comprised of 100,000 total email addresses. 66,667 are unique and 33,333 are duplicates. Some of the duplicates are in original case while others are in lower case. The unique and duplicate addresses are distributed randomly.
